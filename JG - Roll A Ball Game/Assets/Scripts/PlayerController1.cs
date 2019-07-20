@@ -11,6 +11,7 @@ public class PlayerController1 : MonoBehaviour
 
     private Rigidbody rb;
     private int count;
+    private int score;
 
     void Start ()
     {
@@ -36,6 +37,14 @@ public class PlayerController1 : MonoBehaviour
         {
             other.gameObject.SetActive(false);
             count = count + 1;
+            score = score + 1;
+            SetCountText();
+        }
+        else
+        {
+            other.gameObject.CompareTag("Pick Up Enemy");
+            other.gameObject.SetActive(false);
+            score = score - 1;
             SetCountText();
         }
     }
@@ -43,9 +52,14 @@ public class PlayerController1 : MonoBehaviour
     void SetCountText ()
     {
         countText.text = "Count: " + count.ToString();
+        countText.text = "Score: " + score.ToString();
         if (count >= 12)
         {
             winText.text = "You Win!";
         }
+
+        
     }
+
+    
 }
